@@ -1,18 +1,21 @@
+<ngx-spinner type="square-jelly-box" size="medium" color="#fff" [fullScreen]="true">
+  <p style="color: white;">Loading...</p>
+</ngx-spinner>
 <div class="container">
 
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNotesModal">Create a new note</button>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" *ngFor="let note of notes">
       <div class="card card-body">
-        <h5>Notes title implementation</h5>
-        <p class="text-muted">Hey! This is a sample content</p>
+        <h5>{{note.note_title}}</h5>
+        <p class="text-muted">{{note.note_description}}</p>
         <div class="d-flex align-items-center">
           <span class="mx-2">
-            <i class="bi bi-pen" data-bs-toggle="modal" data-bs-target="#editNotesModal"></i>
+            <i class="bi bi-pen" data-bs-toggle="modal" data-bs-target="#editNotesModal" (click)="getNoteDetails(note)"></i>
           </span>
 
           <span class="mx-2">
-            <i class="bi bi-trash"></i>
+            <i class="bi bi-trash" (click)="deleteNote(note)"></i>
           </span>
         </div>
       </div>
@@ -55,20 +58,20 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form [formGroup]="editForm">
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Note Title:</label>
-              <input type="text" class="form-control" id="recipient-name">
+              <input type="text" class="form-control" id="recipient-name" formControlName="edited_title" [value]="noteDetails?.note_title">
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Note Description:</label>
-              <textarea class="form-control" id="message-text"></textarea>
+              <textarea class="form-control" id="message-text" formControlName="edited_description" [value]="noteDetails?.note_description"></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Update Note</button>
+          <button type="button" class="btn btn-primary" (click)="updateNote(noteDetails)" [disabled]="editForm.invalid">Update Note</button>
         </div>
       </div>
     </div>

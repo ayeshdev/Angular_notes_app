@@ -32,7 +32,7 @@ export class NoteService {
   }
 
   //Delete a Note
-  deleteNotes(note: Note) {
+  deleteNote(note: Note) {
     let docRef = doc(this.afs, `Notes/${note.id}`);
     return deleteDoc(docRef)
   }
