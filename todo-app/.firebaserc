@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "srms-fb385": {
+      "hosting": {
+        "todo-app": [
+          "srms-fb385"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "srms-fb385"
+  }
+}

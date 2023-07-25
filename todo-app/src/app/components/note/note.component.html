@@ -1,0 +1,76 @@
+<div class="container">
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNotesModal">Create a new note</button>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-body">
+        <h5>Notes title implementation</h5>
+        <p class="text-muted">Hey! This is a sample content</p>
+        <div class="d-flex align-items-center">
+          <span class="mx-2">
+            <i class="bi bi-pen" data-bs-toggle="modal" data-bs-target="#editNotesModal"></i>
+          </span>
+
+          <span class="mx-2">
+            <i class="bi bi-trash"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="addNotesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Note</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="noteForm">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Note Title:</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="title">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Note Description:</label>
+              <textarea class="form-control" id="message-text" formControlName="description"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addNote()" [disabled]="noteForm.invalid">Add Note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editNotesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Note</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Note Title:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Note Description:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Update Note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
